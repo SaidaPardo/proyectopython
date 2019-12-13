@@ -234,7 +234,6 @@ def enviar_correo():
 """
 
 def clientes_correo(listaCorreos):
-    
     #credenciales
     proveedor_correo = 'smtp.gmail.com: 587'
     remitente = 'saidapardo79@gmail.com'
@@ -253,10 +252,12 @@ def clientes_correo(listaCorreos):
     msg['To'] = ", ".join(listaCorreos)
     msg['Subject'] = 'Prueba'
     servidor.sendmail(msg['From'] , msg['To'], msg.as_string())
+    
+def enviar_correo_clientes():
+    listaCorreos1=enviar_correo()
+    clientes_correo(listaCorreos1)    
 
 
-
-        
 def eliminar_datos():
         opcion=0
         while opcion!='4':
@@ -300,14 +301,16 @@ def actualizar_datos():
 
 
 def menu_principal():
-    continuar="si"
-    while continuar=="si":
+    opcion = 0
+    while opcion != '6':
         enviar_correo()
         print("Digite una opcion")
         print("1 Insertar datos")
         print("2 Consultar datos")
         print("3 Eliminar datos")
         print("4 Actualizar datos")
+        print("5 Enviar Correos")
+        print("6 Salir")
         
         opcion=input()
         if opcion == '1':
@@ -318,11 +321,9 @@ def menu_principal():
             eliminar_datos()
         elif opcion == '4':
             actualizar_datos()
-        continuar=input("si/no  mostrar menu").lower()
-
-#menu_principal()
-
-listaCorreos1=enviar_correo()
-clientes_correo(listaCorreos1)
+        elif opcion == '5':
+            enviar_correo_clientes()
+        elif opcion == '6':
+            print("Gracias por Utilizar Nuestros Servicios")
 
 menu_principal()
